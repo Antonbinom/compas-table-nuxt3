@@ -1,0 +1,71 @@
+@import 'fonts';
+@import 'variables';
+
+* {
+	box-sizing: border-box;
+	outline: 0;
+}
+
+html,
+body,
+#__nuxt {
+  margin: 0;
+
+  height: 100%;
+  font-family: 'MyriadPro', Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: normal;
+}
+
+a, a:visited, a:hover, a:active {
+  font-family: 'MyriadPro', Helvetica, Arial, sans-serif;
+
+	text-decoration: none;
+	transition: $button-transition;
+}
+
+button {
+  font-family: 'MyriadPro', Helvetica, Arial, sans-serif;
+	border: none;
+	cursor: pointer;
+	background: transparent;
+	transition: $button-transition;
+
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.dropdown-menu {
+	border-radius: 5px;
+  box-shadow: 0 0 3px 0 #000, inset 0 1px 2px 0 rgba(255, 255, 255, 0.5);
+  background-color: #fff;
+	overflow: hidden;
+}
+
+	.dropdown-menu__item {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 7px 10px;
+		font-size: 14px;
+		color: #161616;
+		cursor: pointer;
+
+		& div[data-pc-section="content"],div[data-pc-section="start"] {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		& div[data-pc-section="box"] {
+			display: none;
+		}
+		
+		&:hover {
+			background: #eef3f8;
+		}
+	}

@@ -1,0 +1,45 @@
+@mixin button-hover($background: null, $text-color: null, $border-color: null, $transition-time: 0.3s,) {
+  &:hover {
+    transition: background, color, border-color,  ease $transition-time;
+    @if $background {
+      background: $background;
+    }
+    @if $text-color {
+      color: $text-color;
+    }
+    @if $border-color {
+      border-color: $border-color;
+    }
+  }
+}
+
+@mixin wrapper() {
+  border: solid 1px $primary;
+  border-radius: 10px;
+  background-color: $white;
+  box-shadow: 0 5px 20px 0 $black-7;
+}
+
+@mixin input() {
+  border-radius: 5px;
+  border: solid 1px $grey; 
+  padding: 10px 15px 9px 15px;
+  font-size: 16px;
+  width: 100%;
+}
+
+@mixin dropdownMenu() {
+  padding: 7px 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 3px 0 #000, inset 0 1px 2px 0 rgba(255, 255, 255, 0.5);
+  background-color: #fff;
+}
+
+$transition-time: 0.3s;
+$button-transition: background $transition-time ease, color $transition-time ease, border-color $transition-time ease;
+$primary: #eeeff1;
+$black: #000000;
+$black-7: rgba($black, 0.07);
+$white: #FFFFFF;
+$blue-dark: #1253A2;
+$grey: #ccc;
