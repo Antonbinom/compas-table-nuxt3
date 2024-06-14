@@ -80,26 +80,30 @@ const addProduct = () => {
   });
 };
 
-onMounted(() => {
-  productsResult.value = getResults(products.value);
-});
-
 const handleSaveProducts = () => {
   const result = editableProducts.value.filter((item) => {
     return Object.values(item).some((value) => value === "" || value === 0);
   });
-  if (result) {
+  if (result.length) {
     toast.add({
       severity: "error",
       summary: "Не валидные поля у товара",
-      detail:
-        "Для сохранения товаров, все поля должны быть заполненны, а значения не должны быть равны нулю",
+      detail: "Убедитесь что все поля заполнены и не равны нулю",
       life: 10000,
     });
+    return;
   }
-
+  toast.add({
+    severity: "success",
+    summary: "Данные успешно сохранены",
+    life: 3000,
+  });
   saveProducts(editableProducts.value);
 };
+
+onMounted(() => {
+  productsResult.value = getResults(products.value);
+});
 </script>
 
 <style lang="scss" scoped>
