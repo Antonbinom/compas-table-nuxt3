@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <Drawer v-if="isDrawerOpened" />
+    <Drawer v-if="(isDrawerOpened && isMobile) || !isMobile" />
     <main>
       <slot />
     </main>
@@ -8,6 +8,10 @@
 </template>
 
 <script lang="ts" setup>
+import { useWindowSize } from "@vueuse/core";
+const { width } = useWindowSize();
+
+const isMobile = computed(() => width.value < 768);
 const isDrawerOpened = useOpenDrawer();
 </script>
 

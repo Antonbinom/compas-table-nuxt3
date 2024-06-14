@@ -1,1 +1,1 @@
-export const useOpenDrawer = () => useState("isDrawerOpened", () => true);
+export const useOpenDrawer = () => useState("isDrawerOpened", () => false);
