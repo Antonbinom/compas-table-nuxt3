@@ -34,11 +34,36 @@ const useProducts = () => {
       weight: 20,
     },
   ]);
+  const toast = useToast();
 
   const saveProducts = (editableProducts: Product[]) => {
-    if (JSON.stringify(editableProducts) === JSON.stringify(products.value))
+    const result = editableProducts.filter((item) => {
+      return Object.values(item).some((value) => value === "" || value === 0);
+    });
+    if (result.length) {
+      toast.add({
+        severity: "error",
+        summary: "Не валидные поля у товара",
+        detail: "Убедитесь что все поля заполнены и не равны нулю",
+        life: 10000,
+      });
       return;
+    }
+
+    if (JSON.stringify(editableProducts) === JSON.stringify(products.value)) {
+      return toast.add({
+        severity: "warn",
+        summary: "Сперва внесите изменения в таблицу",
+        life: 3000,
+      });
+    }
     products.value = editableProducts;
+
+    toast.add({
+      severity: "success",
+      summary: "Данные успешно сохранены",
+      life: 3000,
+    });
   };
 
   return {

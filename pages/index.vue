@@ -47,7 +47,6 @@
 <script lang="ts" setup>
 import useHelpers from "~/composables/useHelpers";
 const { getResults } = useHelpers();
-const toast = useToast();
 const { products, saveProducts } = useProducts();
 const isDrawerOpened = useOpenDrawer();
 
@@ -81,23 +80,6 @@ const addProduct = () => {
 };
 
 const handleSaveProducts = () => {
-  const result = editableProducts.value.filter((item) => {
-    return Object.values(item).some((value) => value === "" || value === 0);
-  });
-  if (result.length) {
-    toast.add({
-      severity: "error",
-      summary: "Не валидные поля у товара",
-      detail: "Убедитесь что все поля заполнены и не равны нулю",
-      life: 10000,
-    });
-    return;
-  }
-  toast.add({
-    severity: "success",
-    summary: "Данные успешно сохранены",
-    life: 3000,
-  });
   saveProducts(editableProducts.value);
 };
 

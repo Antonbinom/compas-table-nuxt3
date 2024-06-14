@@ -1203,40 +1203,6 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.25.tgz#f077fdc0b5d0078d30893396ff4827a13f99e817"
   integrity sha512-j7P6Rgr3mmtdkeDGTe0E/aYyWEWVtc5yFXtHCRHs28/jptDEWfaVOc5T7cblqy1XKPPfCxJc/8DwQ5YgLOZOVQ==
 
-"@primevue/core@4.0.0-rc.1":
-  version "4.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@primevue/core/-/core-4.0.0-rc.1.tgz#c4a7182620f1a452e7dda3a57ddcc269120db415"
-  integrity sha512-V9Q3fvG/KiIX8k0Nt9dLvp6miQkKfEqI91M0VVGwbN8jLNiOVLrT2jbC1fCHwoK6FpQgkehlqE7qQ7iQEpWTBQ==
-  dependencies:
-    "@primevue/themes" "4.0.0-rc.1"
-
-"@primevue/icons@4.0.0-rc.1":
-  version "4.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@primevue/icons/-/icons-4.0.0-rc.1.tgz#73fca595a2eafc30f98ced8ee68de81e34a4fbff"
-  integrity sha512-3X8cYMyhBX81cRhoMsmS+iGmkV4t9T1qeXxo3mmD3b5y+O7ZRNwpCHKtMrBontlQoX/5r4WWrZO9A2nPDGB4Xg==
-  dependencies:
-    "@primevue/core" "4.0.0-rc.1"
-
-"@primevue/metadata@4.0.0-rc.1":
-  version "4.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@primevue/metadata/-/metadata-4.0.0-rc.1.tgz#454d1e95fb55d5a8fdbc0f2423afa20efc9f91e1"
-  integrity sha512-oI43n3JWPXF605U7RnvVXAuBOAVEdDOdZmc/qCEmYfDb2dhXMDg8u/mMSJ8zCOZhD1EgLt2TGvU8ThaxZ8WD/g==
-
-"@primevue/nuxt-module@4.0.0-rc.1":
-  version "4.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@primevue/nuxt-module/-/nuxt-module-4.0.0-rc.1.tgz#98304b3d201244244a7a51afafb94c61384eac89"
-  integrity sha512-HzLl+qduSmpDyUj0Q7td6byc94XYvyIn41l6Gi+MBIcK2+gSaG0tJVWskbtZM8TNtlSyFBnYAf2uyemS262KsQ==
-  dependencies:
-    "@nuxt/kit" "^3.7.3"
-    "@primevue/metadata" "4.0.0-rc.1"
-    pathe "^1.1.2"
-    primevue "4.0.0-rc.1"
-
-"@primevue/themes@4.0.0-rc.1":
-  version "4.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@primevue/themes/-/themes-4.0.0-rc.1.tgz#7751e46537477908d6735750424b9042b340e8a3"
-  integrity sha512-t650tX7MRG4VIyy4LgsO3+F4tyrAJnKl3joyYGNjrSAoMd2kai7Ex1rOg/LyTEMHWa7DLcEDOr6LyWErxa4+hA==
-
 "@rollup/plugin-alias@^5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-alias/-/plugin-alias-5.1.0.tgz#99a94accc4ff9a3483be5baeedd5d7da3b597e93"
@@ -4709,15 +4675,7 @@ pretty-bytes@^6.1.1:
   resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-6.1.1.tgz#38cd6bb46f47afbf667c202cfc754bffd2016a3b"
   integrity sha512-mQUvGU6aUFQ+rNvTIAcZuWGRT9a6f6Yrg9bHs4ImKF+HZCEK+plBvnAZYSIQztknZF2qnzNtr6F8s0+IuptdlQ==
 
-primevue@4.0.0-rc.1:
-  version "4.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/primevue/-/primevue-4.0.0-rc.1.tgz#a1cc44de2d63956e0c6255515df16579f6d53c77"
-  integrity sha512-dSOHMHujpa14J0tG1IwXoci1/Q+PE/ILzzyOfAn4v44AqL9lW3QYkf70PszMnmHetnIBR7pZ0T1Y8KUyFr2REg==
-  dependencies:
-    "@primevue/core" "4.0.0-rc.1"
-    "@primevue/icons" "4.0.0-rc.1"
-
-primevue@^3.51.0, primevue@^3.52.0:
+primevue@^3.51.0:
   version "3.52.0"
   resolved "https://registry.yarnpkg.com/primevue/-/primevue-3.52.0.tgz#819d1d70fe37cea7dcd06076b7c3cd9ee4e3c6a4"
   integrity sha512-HLOVP5YI0ArFKUhIyfZsWmTNMaBYNCBWC/3DYvdd/Po4LY5/WXf7yIYvArE2q/3OuwSXJXvjlR8UNQeJYRSQog==
@@ -5147,11 +5105,6 @@ socks@^2.7.1:
   dependencies:
     ip-address "^9.0.5"
     smart-buffer "^4.2.0"
-
-sortablejs@1.14.0:
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/sortablejs/-/sortablejs-1.14.0.tgz#6d2e17ccbdb25f464734df621d4f35d4ab35b3d8"
-  integrity sha512-pBXvQCs5/33fdN1/39pPL0NZF20LeRbLQ5jtnheIPN9JQAaufGjKdWduZn4U7wCtVuzKhmRkI0DFYHYRbB2H1w==
 
 "source-map-js@>=0.6.2 <2.0.0", source-map-js@^1.0.1, source-map-js@^1.2.0:
   version "1.2.0"
@@ -5817,11 +5770,6 @@ vue-devtools-stub@^0.1.0:
   resolved "https://registry.yarnpkg.com/vue-devtools-stub/-/vue-devtools-stub-0.1.0.tgz#a65b9485edecd4273cedcb8102c739b83add2c81"
   integrity sha512-RutnB7X8c5hjq39NceArgXg28WZtZpGc3+J16ljMiYnFhKvd8hITxSWQSQ5bvldxMDU6gG5mkxl1MTQLXckVSQ==
 
-vue-draggable-next@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/vue-draggable-next/-/vue-draggable-next-2.2.1.tgz#adbe98c74610cca8f4eb63f92042681f96920451"
-  integrity sha512-EAMS1IRHF0kZO0o5PMOinsQsXIqsrKT1hKmbICxG3UEtn7zLFkLxlAtajcCcUTisNvQ6TtCB5COjD9a1raNADw==
-
 vue-observe-visibility@^2.0.0-alpha.1:
   version "2.0.0-alpha.1"
   resolved "https://registry.yarnpkg.com/vue-observe-visibility/-/vue-observe-visibility-2.0.0-alpha.1.tgz#1e4eda7b12562161d58984b7e0dea676d83bdb13"
@@ -5848,11 +5796,6 @@ vue-virtual-scroller@2.0.0-beta.8:
     vue-observe-visibility "^2.0.0-alpha.1"
     vue-resize "^2.0.0-alpha.1"
 
-vue3-drag-resize@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/vue3-drag-resize/-/vue3-drag-resize-2.0.5.tgz#190f7e86aada59882fa4b69e404e761137fbf7cb"
-  integrity sha512-7ein6vCC9LN6fsO3o9mYgmoldU9c/O2oyw9U5cqAJP21Mj2yQ8OGNPzEZfen6QltgLMfAOXv4iPIdE0EXFezGA==
-
 vue@^3.4.27:
   version "3.4.27"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.4.27.tgz#40b7d929d3e53f427f7f5945386234d2854cc2a1"
@@ -5863,13 +5806,6 @@ vue@^3.4.27:
     "@vue/runtime-dom" "3.4.27"
     "@vue/server-renderer" "3.4.27"
     "@vue/shared" "3.4.27"
-
-vuedraggable@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/vuedraggable/-/vuedraggable-4.1.0.tgz#edece68adb8a4d9e06accff9dfc9040e66852270"
-  integrity sha512-FU5HCWBmsf20GpP3eudURW3WdWTKIbEIQxh9/8GE806hydR9qZqRRxRE3RjqX7PkuLuMQG/A7n3cfj9rCEchww==
-  dependencies:
-    sortablejs "1.14.0"
 
 webidl-conversions@^3.0.0:
   version "3.0.1"
