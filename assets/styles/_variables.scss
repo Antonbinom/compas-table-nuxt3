@@ -20,12 +20,11 @@
   box-shadow: 0 5px 20px 0 $black-7;
 }
 
-@mixin input() {
-  border-radius: 5px;
-  border: solid 1px $grey; 
-  padding: 10px 15px 9px 15px;
-  font-size: 16px;
-  width: 100%;
+@mixin reset-wrapper() {
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
 }
 
 @mixin dropdownMenu() {
@@ -41,5 +40,8 @@ $primary: #eeeff1;
 $black: #000000;
 $black-7: rgba($black, 0.07);
 $white: #FFFFFF;
+$blue: #2f8cff;
 $blue-dark: #1253A2;
 $grey: #ccc;
+$grey-2: #8f8f8f;
+$blue-gray:#a6b7d4

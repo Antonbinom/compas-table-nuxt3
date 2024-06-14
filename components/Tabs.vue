@@ -10,7 +10,6 @@
         {{ item.title }}
       </li>
     </ul>
-    <ButtonColumnsSettings />
   </nav>
 </template>
 
@@ -22,7 +21,6 @@ const tabs = ref<
     name: string;
     title: string;
     isActive: boolean;
-    link: string;
   }[]
 >([
   {
@@ -37,7 +35,7 @@ const tabs = ref<
   },
   {
     name: "additional expenses",
-    title: "Доп.расходы",
+    title: "Доп. расходы",
     isActive: false,
   },
 ]);
@@ -55,19 +53,22 @@ const setActiveTab = (name: string) => {
 
 <style lang="scss" scoped>
 .tabs {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 25px;
   &-list {
     display: flex;
     align-items: center;
     &__item {
       font-size: 16px;
       font-weight: 600;
-      color: #1253a2;
+      color: $blue-dark;
       cursor: pointer;
+      transition: all ease 0.2s;
+
       &.active {
-        color: #000;
+        color: $black;
+      }
+      &:not(.active):hover {
+        color: $blue;
+        transition: all ease 0.2s;
       }
       &:nth-child(2) {
         margin-left: 20px;

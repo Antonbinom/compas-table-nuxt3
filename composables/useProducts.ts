@@ -1,40 +1,37 @@
-interface Product {
-  id?: number;
-  value: string;
-  price: number;
-  count: number;
-  name: string;
-}
-
+import type { Product } from "~/types";
 const useProducts = () => {
   const products = useState<Product[]>("products", () => [
     {
-      id: 1,
+      id: "asdas3",
       value: "Мраморный щебень фр. 1-3 мм, 25кг",
       price: 1331,
       count: 15,
       name: "Мраморный щебень",
+      weight: 25,
     },
     {
-      id: 2,
-      value: "Мраморный щебень фр. 2-5 мм, 25кг",
-      price: 1231,
-      count: 12,
-      name: "Мраморный щебень",
+      id: "gdfsd3",
+      value: "Песок, 25кг",
+      price: 1000,
+      count: 2,
+      name: "Песок",
+      weight: 15,
     },
     {
-      id: 3,
-      value: "Мраморный щебень фр. 5-10 мм, 25кг",
+      id: "34kjsdkj3",
+      value: "Мраморный щебень фр. 5-10 мм, 20кг",
       price: 1131,
       count: 10,
       name: "Мраморный щебень",
+      weight: 20,
     },
     {
-      id: 4,
-      value: "Мраморный щебень фр. 10-20 мм, 25кг",
+      id: "askj3kq",
+      value: "Гравий фр. 1-3 мм, 20кг",
       price: 1031,
       count: 10,
-      name: "Мраморный щебень",
+      name: "Гравий",
+      weight: 20,
     },
   ]);
 

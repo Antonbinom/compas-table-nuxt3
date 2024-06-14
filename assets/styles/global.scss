@@ -10,7 +10,7 @@ html,
 body,
 #__nuxt {
   margin: 0;
-
+	background: #efeeee;
   height: 100%;
   font-family: 'MyriadPro', Helvetica, Arial, sans-serif;
 	font-size: 16px;
@@ -47,25 +47,39 @@ ul {
 	overflow: hidden;
 }
 
-	.dropdown-menu__item {
+.dropdown-menu__item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 6px 11px;
+	font-size: 14px;
+	color: #161616;
+	cursor: pointer;
+
+	& div[data-pc-section="content"],div[data-pc-section="start"] {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 7px 10px;
-		font-size: 14px;
-		color: #161616;
-		cursor: pointer;
-
-		& div[data-pc-section="content"],div[data-pc-section="start"] {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-		}
-		& div[data-pc-section="box"] {
-			display: none;
-		}
-		
-		&:hover {
-			background: #eef3f8;
-		}
 	}
+	& div[data-pc-section="box"] {
+		display: none;
+	}
+	
+	&:hover {
+		background: #eef3f8;
+	}
+}
+
+input {
+	width: 100%;
+	padding: 10px 15px 9px 15px;
+	font-family: MyriadPro;
+	font-size: 16px;
+	border-radius: 5px;
+	transition: all ease 0.2s;
+
+	&:focus {
+		border-color: #2f8cff;
+		transition: all ease 0.2s;
+	}
+}

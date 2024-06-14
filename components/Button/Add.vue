@@ -17,9 +17,9 @@
   align-items: center;
   padding: 10px 15px 10px 10px;
   font-size: 14px;
-  color: #fff;
+  color: $white;
   border-radius: 5px;
-  background-color: #2f8cff;
+  background-color: $blue;
   @include button-hover($blue-dark);
   &-icon {
     margin-right: 7px;

@@ -6,7 +6,7 @@
       aria-haspopup="true"
       aria-controls="overlay_menu"
     >
-      <img src="/assets/images/settings.svg" alt="Настройки" />
+      <img class="svg-icon" src="/assets/images/settings.svg" alt="Настройки" />
     </Button>
     <Menu
       :model="menuItems"
@@ -105,30 +105,17 @@ const props = defineProps({
 });
 
 const menu = ref();
-const button = ref();
 const visibleMenu = ref("main");
 const selectedColumns = ref(props.visibleColumns);
 const menuItems = ref([{ items: [] }]);
 
-const items = ref([
-  {
-    label: "Отображение столбцов",
-    class: "dropdown-menu__item",
-    command: () => {
-      menuItems.value[0].items = columnVisibilityMenu.value;
-      visibleMenu.value = "visibility";
-    },
-  },
-  {
-    label: "Порядок столбцов",
-    class: "dropdown-menu__item",
-  },
-]);
-
 const columnVisibilityMenu = ref([
-  { label: "Название единицы", key: "a", class: "dropdown-menu__item" },
+  { label: "Номер строки", key: "e", class: "dropdown-menu__item" },
+  { label: "Действие", key: "f", class: "dropdown-menu__item" },
+  { label: "Наименование единицы", key: "a", class: "dropdown-menu__item" },
   { label: "Цена", key: "b", class: "dropdown-menu__item" },
   { label: "Кол-во", key: "c", class: "dropdown-menu__item" },
+  { label: "Вес", key: "в", class: "dropdown-menu__item" },
   { label: "Название товара", key: "d", class: "dropdown-menu__item" },
   { label: "Итого", key: "d", class: "dropdown-menu__item" },
 ]);
@@ -139,7 +126,6 @@ const toggleMenu = (event) => {
 
 const handleMenuClick = (event) => {
   event.stopPropagation();
-  console.log(111);
 };
 
 const setMenuItems = (items, menuName) => {
@@ -166,6 +152,7 @@ watch(
 
 .dropdown-menu__item.checkbox img {
   transform: rotate(180deg);
+  color: $blue-gray;
 }
 
 .dropdown-menu__item.checkbox .dropdown-menu__text {

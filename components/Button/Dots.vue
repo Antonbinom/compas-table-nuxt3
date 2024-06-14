@@ -1,5 +1,6 @@
 <template>
   <Button
+    class="button-dots"
     type="button"
     @click="toggle"
     aria-haspopup="true"
@@ -33,13 +34,16 @@ const items = ref([
   },
 ]);
 
-const toggle = (event) => {
+const toggle = (event: any) => {
   menu.value.toggle(event);
 };
 </script>
 
-//TODO:hover
 <style lang="scss">
+.button-dots {
+  padding: 0;
+  padding-bottom: 5px;
+}
 .dropdown-menu__item.delete {
   color: #ae0a0a;
   font-size: 14px;

@@ -1,10 +1,12 @@
 <template>
-  <input
-    class="input"
-    :value="value"
+  <InputNumber
     @input="updateInputValue"
-    type="text"
+    :modelValue="value"
+    :invalid="value === 0 && !readonly"
     :readonly="readonly"
+    :useGrouping="false"
+    class="input"
+    borderColor
   />
 </template>
 
@@ -16,16 +18,7 @@ defineProps({
 
 const emit = defineEmits(["update-input"]);
 
-const updateInputValue = (event: Event) => {
-  const input = event.target as HTMLInputElement;
-  const validatedValue = input.value.replace(/\D/g, "");
-  input.value = validatedValue;
-  emit("update-input", validatedValue);
+const updateInputValue = (event: any) => {
+  emit("update-input", Number(event.value));
 };
 </script>
-
-<style lang="scss" scoped>
-.input {
-  @include input();
-}
-</style>

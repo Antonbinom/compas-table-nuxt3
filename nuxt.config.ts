@@ -1,7 +1,3 @@
-// import Draggable from 'vuedraggable';
-// import Vue from 'vue';
-// Vue.component('draggable', Draggable);
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -12,7 +8,6 @@ export default defineNuxtConfig({
       ripple: true,
     },
     components: {
-      // prefix: "Prime",
       include: [
         "Column",
         "DataTable",
@@ -21,11 +16,9 @@ export default defineNuxtConfig({
         "Button",
         "Menu",
         "Checkbox",
+        "InputNumber",
       ],
     },
-    // directives: {
-    //   include: ["Ripple", "Tooltip"],
-    // },
   },
   vite: {
     css: {

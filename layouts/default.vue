@@ -1,11 +1,15 @@
 <template>
   <div class="layout">
-    <Drawer />
+    <Drawer v-if="isDrawerOpened" />
     <main>
       <slot />
     </main>
   </div>
 </template>
+
+<script lang="ts" setup>
+const isDrawerOpened = useOpenDrawer();
+</script>
 
 <style lang="scss">
 .layout {

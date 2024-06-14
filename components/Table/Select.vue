@@ -6,6 +6,7 @@
     optionLabel="name"
     class="select"
     scrollHeight="145px"
+    :invalid="selectedValue?.name === ''"
   >
     <template #option="{ option }">
       <div class="custom-option">
@@ -16,6 +17,11 @@
 </template>
 
 <script lang="ts" setup>
+interface Option {
+  name: string;
+  code: string;
+}
+
 const props = defineProps({
   selectedValue: Object,
   options: Array,
@@ -23,30 +29,28 @@ const props = defineProps({
 
 const emit = defineEmits(["update-select"]);
 
-const select = ref<{ name: object }>(props.selectedValue);
+const select = ref(props.selectedValue);
 
 watch(
   () => props.selectedValue,
   () => (select.value = props.selectedValue)
 );
 
-const updateSelectedValue = (event: Event) => {
-  emit("update-select", event.name);
+const updateSelectedValue = (value: Option) => {
+  emit("update-select", value.name);
 };
 </script>
 
 <style lang="scss">
 .select {
   width: 100%;
-  border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #fff;
   font-size: 16px;
 }
 .p-dropdown-label {
-  color: #000;
+  color: $black;
   font-family: MyriadPro;
-  padding: 10px 10px 9px 10px;
+  padding: 8px 10px 8px 14px;
 }
 
 .custom-selected-item {
@@ -56,8 +60,8 @@ const updateSelectedValue = (event: Event) => {
 
 .p-dropdown-panel {
   border-radius: 5px;
-  box-shadow: 0 0 3px 0 #000, inset 0 1px 2px 0 rgba(255, 255, 255, 0.5);
-  background-color: #fff;
+  box-shadow: 0 0 3px 0 $black, inset 0 1px 2px 0 rgba(255, 255, 255, 0.5);
+  background-color: $white;
 }
 
 .p-dropdown-item {
@@ -73,15 +77,19 @@ const updateSelectedValue = (event: Event) => {
     }
   }
 }
-.custom-option {
-  display: flex;
-  justify-content: space-between;
-  padding: 0;
-}
 
-.custom-option-code {
-  color: #888;
-  font-size: 0.9em;
+.p-dropdown-trigger {
+  background: #f6f5f3;
+  width: 21px;
+  & svg {
+    transform: rotate(270deg);
+    height: 7px;
+    color: $grey-2;
+  }
+  &:hover {
+    background: #ffeabf;
+    transition: all ease 0.2s;
+  }
 }
 
 .p-dropdown-items-wrapper {
