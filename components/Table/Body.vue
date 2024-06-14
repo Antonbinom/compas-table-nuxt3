@@ -7,7 +7,6 @@
     showGridlines
     :value="editableProducts"
     :reorderableColumns="true"
-    @columnReorder="onColReorder"
     @rowReorder="onRowReorder"
     class="table"
   >
@@ -146,15 +145,12 @@
 <script lang="ts" setup>
 import "primevue/resources/themes/aura-light-green/theme.css";
 import { productCategorise, productNames } from "~/data";
-import { useToast } from "primevue/usetoast";
 import useHelpers from "~/composables/useHelpers";
 import type { Product } from "~/types";
 
 const { getResults } = useHelpers();
 
 const emit = defineEmits(["update-products", "update-results"]);
-
-const toast = useToast();
 
 const props = defineProps({
   products: Array,
@@ -167,6 +163,7 @@ const removeProduct = (id: string) => {
   editableProducts.value = editableProducts.value?.filter(
     (product: Product) => product.id !== id
   );
+
   emit("update-products", editableProducts.value);
   updateResults();
 };
@@ -175,13 +172,8 @@ const updateResults = () => {
   emit("update-results", getResults(editableProducts.value));
 };
 
-const onColReorder = () => {
-  toast.add({ severity: "success", summary: "Column Reordered", life: 3000 });
-};
-
 const onRowReorder = (event: any) => {
   editableProducts.value = event.value;
-  toast.add({ severity: "success", summary: "Rows Reordered", life: 3000 });
 };
 </script>
 
