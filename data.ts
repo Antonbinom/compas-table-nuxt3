@@ -51,11 +51,3 @@ export const productNames = [
   { name: "Грунт" },
   { name: "Песок" },
 ];
-
-export const productWeights = [
-  { name: 5 },
-  { name: 10 },
-  { name: 15 },
-  { name: 20 },
-  { name: 25 },
-];
