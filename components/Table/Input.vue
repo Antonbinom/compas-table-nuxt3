@@ -22,3 +22,9 @@ const updateInputValue = (event: any) => {
   emit("update-input", Number(event.value));
 };
 </script>
+
+<style lang="scss">
+.p-inputnumber {
+  width: 100%;
+}
+</style>

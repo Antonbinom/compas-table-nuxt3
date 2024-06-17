@@ -45,8 +45,8 @@ const toggle = (event: any) => {
   padding-bottom: 5px;
 }
 .dropdown-menu__item.delete {
-  color: #ae0a0a;
   font-size: 14px;
+  color: #ae0a0a;
   cursor: pointer;
 }
 </style>

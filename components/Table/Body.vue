@@ -1,142 +1,80 @@
 <template>
   <DataTable
-    id="dt-responsive-table"
+    ref="table"
     resizableColumns
-    columnResizeMode="expand"
-    scrollable
+    reorderableColumns
+    columnResizeMode="fit"
     showGridlines
+    scrollable
     :value="editableProducts"
-    :reorderableColumns="true"
     @rowReorder="onRowReorder"
+    @columnReorder="onColReorder"
+    :columnOrder="columnsOrder"
     class="table"
   >
     <Column
-      v-if="visibleColumns?.includes('Номер строки')"
-      headerStyle="width: 24px"
-      :reorderableColumn="false"
-      :resizeblaColumn="false"
-      field="0"
-      class="table-column dragg"
-    >
-      <template #body="{ index }">
-        <span class="table-column__header">Номер строки</span>
-        <div>
-          <ButtonBurger /> <span>{{ index + 1 }}</span>
-        </div>
-      </template>
-    </Column>
-    <Column
-      v-if="visibleColumns?.includes('Действие')"
-      field="1"
-      :reorderableColumn="false"
-      :resizeblaColumn="false"
-      class="table-column delete"
-      headerStyle="width: 1.5rem"
-    >
-      <template #body="{ data }">
-        <span class="table-column__header">Действие</span>
-        <ButtonDots @remove-item="removeProduct(data.id)" />
-      </template>
-    </Column>
-    <Column
-      v-if="visibleColumns?.includes('Наименование единицы')"
-      field="2"
-      header="Наименование единицы"
-      headerStyle="width: 672px"
-      class="table-column table-column__select"
+      v-for="column in columns.filter((col) =>
+        visibleColumns?.includes(col.header)
+      )"
+      :key="column.field"
+      :field="column.field"
+      :header="column.header"
+      :resizebleColumn="column.isResizeble"
+      :headerStyle="column.style"
+      :class="column.class"
     >
       <template #body="{ index, data }">
-        <span class="table-column__header">Наименование единицы</span>
+        <span class="table-column__header">{{ column.header }}</span>
+        <div v-if="column.field === 'Номер строки'">
+          <ButtonBurger />
+          <span>{{ index + 1 }}</span>
+        </div>
+        <ButtonDots
+          v-if="column.field === 'Действие'"
+          @remove-item="removeProduct(data.id)"
+        />
         <TableSelect
+          v-if="column.field === 'Наименование единицы'"
           :selectedValue="{ name: data.value }"
           :options="productCategorise"
           @update-select="editableProducts[index].value = $event"
         />
-      </template>
-    </Column>
-    <Column
-      v-if="visibleColumns?.includes('Цена')"
-      field="3"
-      header="Цена"
-      headerStyle="width: 220px"
-      class="table-column table-column__input"
-    >
-      <template #body="{ index }">
-        <span class="table-column__header">Цена</span>
-
         <TableInput
+          v-if="column.field === 'Цена'"
           :value="editableProducts[index].price"
           @update-input="
             editableProducts[index].price = $event;
             updateResults();
           "
         />
-      </template>
-    </Column>
-
-    <Column
-      v-if="visibleColumns?.includes('Кол-во')"
-      field="4"
-      header="Кол-во"
-      headerStyle="width: 220px"
-      class="table-column table-column__input"
-    >
-      <template #body="{ index }">
-        <span class="table-column__header">Кол-во</span>
         <TableInput
+          v-if="column.field === 'Вес'"
           :value="editableProducts[index].count"
           @update-input="
             editableProducts[index].count = $event;
             updateResults();
           "
         />
-      </template>
-    </Column>
-    <Column
-      v-if="visibleColumns?.includes('Название товара')"
-      field="5"
-      header="Название товара"
-      headerStyle="width: 160px"
-      class="table-column table-column__select"
-    >
-      <template #body="{ index, data }">
-        <span class="table-column__header">Название товара</span>
+        <TableInput
+          v-if="column.field === 'Кол-во'"
+          :value="editableProducts[index].count"
+          @update-input="
+            editableProducts[index].count = $event;
+            updateResults();
+          "
+        />
         <TableSelect
+          v-if="column.field === 'Название товара'"
           :selectedValue="{ name: data.name }"
           :options="productNames"
           @update-select="editableProducts[index].name = $event"
         />
-      </template>
-    </Column>
 
-    <Column
-      v-if="visibleColumns?.includes('Вес')"
-      field="6"
-      header="Вес"
-      class="table-column table-column__input"
-    >
-      <template #body="{ index }">
-        <span class="table-column__header">Вес</span>
         <TableInput
-          :value="editableProducts[index].weight"
-          @update-input="
-            editableProducts[index].weight = $event;
-            updateResults();
-          "
+          v-if="column.field === 'Итого'"
+          :value="data.count * data.price"
+          :readonly="true"
         />
-      </template>
-    </Column>
-
-    <Column
-      v-if="visibleColumns?.includes('Итого')"
-      field="7"
-      header="Итого"
-      headerStyle="width: 148px"
-      class="table-column table-column__input"
-    >
-      <template #body="{ data }">
-        <span class="table-column__header">Итого</span>
-        <TableInput :value="data.count * data.price" :readonly="true" />
       </template>
     </Column>
   </DataTable>
@@ -147,6 +85,7 @@ import "primevue/resources/themes/aura-light-green/theme.css";
 import { productCategorise, productNames } from "~/data";
 import useHelpers from "~/composables/useHelpers";
 import type { Product } from "~/types";
+const columnsOrder = useColumnsOrder();
 
 const { getResults } = useHelpers();
 
@@ -156,6 +95,67 @@ const props = defineProps({
   products: Array,
   visibleColumns: Array,
 });
+
+const table = ref(null);
+
+const columns = ref([
+  {
+    field: "Номер строки",
+    header: "Номер строки",
+    isResizeble: false,
+    style: "max-width: 24px",
+    class: "table-column dragg",
+  },
+  {
+    field: "Действие",
+    header: "Действие",
+    isResizeble: false,
+    style: "max-width: 1rem",
+    class: "table-column delete",
+  },
+  {
+    field: "Наименование единицы",
+    header: "Наименование единицы",
+    isResizeble: true,
+    style: "width: 672px",
+    class: "table-column table-column__select",
+  },
+  {
+    field: "Цена",
+    header: "Цена",
+    isResizeble: true,
+    style: "width: 220px",
+    class: "table-column table-column__input",
+  },
+  {
+    field: "Вес",
+    header: "Вес",
+    isResizeble: true,
+    style: "width: 220px",
+    class: "table-column table-column__input",
+  },
+  {
+    field: "Кол-во",
+    header: "Кол-во",
+    isResizeble: true,
+    style: "width: 160px",
+    class: "table-column table-column__select",
+  },
+  {
+    field: "Название товара",
+    header: "Название товара",
+    isResizeble: true,
+    style: "",
+    class: "table-column table-column__input",
+  },
+  {
+    field: "Итого",
+    header: "Итого",
+    isResizeble: true,
+    style: "width: 148px",
+    class: "table-column table-column__input",
+  },
+]);
 
 const editableProducts = ref<any>(props.products);
 
@@ -175,6 +175,17 @@ const updateResults = () => {
 const onRowReorder = (event: any) => {
   editableProducts.value = event.value;
 };
+
+const onColReorder = () => {
+  columnsOrder.value = table.value.d_columnOrder;
+};
+
+watch(
+  () => columnsOrder.value,
+  () => {
+    table.value.d_columnOrder = columnsOrder.value;
+  }
+);
 </script>
 
 <style lang="scss">

@@ -1,5 +1,5 @@
 <template>
-  <button ref="dropdownButton" @click="toggleMenu">
+  <button class="dropdown-button" ref="dropdownButton" @click="toggleMenu">
     <img class="svg-icon" src="/assets/images/settings.svg" alt="Настройки" />
   </button>
 
@@ -26,22 +26,23 @@
           src="/assets/images/arrow.svg"
           alt="стрелка назад"
         />
-        <span class="dropdown-menu__text">Отображение столбцов</span>
+        <span class="dropdown-menu__text">Отображение закладок</span>
       </li>
       <div
-        v-for="item in columnVisibilityMenu"
-        :key="item.key"
+        v-for="tab in tabs"
+        :key="tab.name"
         class="dropdown-menu__item checkbox"
       >
         <Checkbox
+          :disabled="tab.isActive"
           unstyled
-          v-model="selectedColumns"
-          name="category"
-          :inputId="item.key"
-          :value="item.label"
+          v-model="visibleTabs"
+          name="tab"
+          :inputId="tab"
+          :value="tab.name"
           class="dropdown-menu__checkbox"
         />
-        <label :for="item.key">{{ item.label }}</label>
+        <label :for="tab.name">{{ tab.name }}</label>
       </div>
     </ul>
     <ul v-if="visibleMenu === 'order'">
@@ -51,16 +52,16 @@
           src="/assets/images/arrow.svg"
           alt="стрелка назад"
         />
-        <span class="dropdown-menu__text">Порядок столбцов</span>
+        <span class="dropdown-menu__text">Порядок закладок</span>
       </li>
-      <draggable v-model="columnsOrder">
+      <draggable v-model="tabs">
         <transition-group>
           <li
             class="dropdown-menu__item"
-            v-for="(column, index) in columnsOrder"
+            v-for="(tab, index) in tabs"
             :key="index"
           >
-            {{ column }}
+            {{ tab.name }}
           </li>
         </transition-group>
       </draggable>
@@ -71,44 +72,29 @@
 <script setup>
 import { onClickOutside } from "@vueuse/core";
 import { VueDraggableNext } from "vue-draggable-next";
-const draggable = VueDraggableNext;
-const props = defineProps({
-  visibleColumns: Array,
-});
 
-const columnsOrder = useColumnsOrder();
+const draggable = VueDraggableNext;
+const visibleTabs = useVisibleTabs();
+const tabs = useTabs();
 
 const isDropdownVisible = ref(false);
 const dropdownButton = ref(null);
 const dropdownMenu = ref(null);
 const visibleMenu = ref("main");
-const selectedColumns = ref(props.visibleColumns);
 const menuItems = ref([{ items: [] }]);
+
 const { bottom, right } = useElementBounding(dropdownButton);
 const { width: windowWidth } = useWindowSize();
 
 const mainMenu = ref([
   {
-    name: "Отображение столбцов",
-    action: () => setMenuItems(columnVisibilityMenu.value, "visibility"),
+    name: "Отображение закладок",
+    action: () => setMenuItems(tabs.value, "visibility"),
   },
   {
-    name: "Порядок столбцов",
-    action: () => setMenuItems(columnsOrder.value, "order"),
+    name: "Порядок закладок",
+    action: () => setMenuItems(tabs.value, "order"),
   },
-]);
-const columnVisibilityMenu = ref([
-  { label: "Номер строки", key: "e" },
-  { label: "Действие", key: "f" },
-  {
-    label: "Наименование единицы",
-    key: "a",
-  },
-  { label: "Цена", key: "b" },
-  { label: "Кол-во", key: "c" },
-  { label: "Вес", key: "в" },
-  { label: "Название товара", key: "d" },
-  { label: "Итого", key: "d" },
 ]);
 
 const toggleMenu = () => {
@@ -124,8 +110,6 @@ const setMenuItems = (items, menuName) => {
   visibleMenu.value = menuName;
 };
 
-const emit = defineEmits(["columns-visibility-change"]);
-
 watch(isDropdownVisible, (newValue) => {
   if (newValue && dropdownMenu.value) {
     dropdownMenu.value.style.top = `${bottom.value}px`;
@@ -134,12 +118,20 @@ watch(isDropdownVisible, (newValue) => {
 });
 
 watch(
-  () => selectedColumns.value,
-  () => emit("columns-visibility-change", selectedColumns.value)
+  () => visibleTabs.value,
+  () =>
+    tabs.value.forEach((tab) =>
+      visibleTabs.value.includes(tab.name)
+        ? (tab.isVisible = true)
+        : (tab.isVisible = false)
+    )
 );
 </script>
 
 <style lang="scss">
+.dropdown-button {
+  position: relative;
+}
 .dropdown-menu__text {
   margin-right: 9px;
 }

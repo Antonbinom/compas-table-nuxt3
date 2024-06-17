@@ -7,7 +7,7 @@
     </div>
     <div class="products-tabs">
       <Tabs />
-      <ButtonColumnsSettings
+      <ButtonTabsSettings
         class="products-tabs-settings"
         :visibleColumns="visibleColumns"
         @columns-visibility-change="visibleColumns = $event"
@@ -113,6 +113,7 @@ onMounted(() => {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 25px;
+  padding-right: 15px;
 }
 .products-buttons {
   padding: 20px 25px;
@@ -128,6 +129,9 @@ onMounted(() => {
   display: flex;
   justify-content: end;
   align-items: center;
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-bottom: 8px;
   & span {
     margin-right: 20px;
     font-size: 12px;

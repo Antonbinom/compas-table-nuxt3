@@ -4,10 +4,11 @@
       <li
         v-for="item in tabs"
         :key="item.name"
+        v-show="item.isVisible"
         :class="`tabs-list__item ${item.isActive ? 'active' : ''}`"
         @click="setActiveTab(item.name)"
       >
-        {{ item.title }}
+        {{ item.name }}
       </li>
     </ul>
   </nav>
@@ -16,33 +17,10 @@
 <script lang="ts" setup>
 const emit = defineEmits(["change-active-tab"]);
 
-const tabs = ref<
-  {
-    name: string;
-    title: string;
-    isActive: boolean;
-  }[]
->([
-  {
-    name: "all",
-    title: "Общее",
-    isActive: false,
-  },
-  {
-    name: "products",
-    title: "Товары",
-    isActive: true,
-  },
-  {
-    name: "additional expenses",
-    title: "Доп. расходы",
-    isActive: false,
-  },
-]);
-
+const tabs = useTabs();
 const setActiveTab = (name: string) => {
   tabs.value.forEach(
-    (tab: { name: string; title: string; isActive: boolean }) => {
+    (tab: { name: string; isActive: boolean; isVisible: boolean }) => {
       tab.name === name ? (tab.isActive = true) : (tab.isActive = false);
     }
   );
@@ -56,6 +34,7 @@ const setActiveTab = (name: string) => {
   &-list {
     display: flex;
     align-items: center;
+    gap: 20px;
     &__item {
       font-size: 16px;
       font-weight: 600;
@@ -69,10 +48,6 @@ const setActiveTab = (name: string) => {
       &:not(.active):hover {
         color: $blue;
         transition: all ease 0.2s;
-      }
-      &:nth-child(2) {
-        margin-left: 20px;
-        margin-right: 25px;
       }
     }
   }

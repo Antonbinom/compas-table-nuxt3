@@ -18,6 +18,12 @@ body,
 	line-height: normal;
 }
 
+body {
+  position: relative;
+
+}
+
+
 a, a:visited, a:hover, a:active {
   font-family: 'MyriadPro', Helvetica, Arial, sans-serif;
 
@@ -49,7 +55,7 @@ ul {
 
 .dropdown-menu__item {
 	display: flex;
-	justify-content: space-between;
+	justify-content: start;
 	align-items: center;
 	padding: 6px 11px;
 	font-size: 14px;
@@ -58,7 +64,7 @@ ul {
 
 	& div[data-pc-section="content"],div[data-pc-section="start"] {
 		display: flex;
-		justify-content: space-between;
+		justify-content: start;
 		align-items: center;
 	}
 	& div[data-pc-section="box"] {
